@@ -18,19 +18,27 @@
       environment.systemPackages =
         [ 
         pkgs.nano 
+        pkgs.zsh
         pkgs.hyfetch 
         pkgs.tmux 
         pkgs.git 
         pkgs.gh 
-        pkgs.iterm2 
         pkgs.python3
         pkgs.mkalias
         pkgs.obsidian
-
         ];
 
         homebrew = {
           enable = true;
+          onActivation.cleanup = "zap";
+          onActivation.autoUpdate = true;
+          onActivation.upgrade = true;
+          masApps = {
+            "Onedrive" = 823766827;
+          };
+          brews = [
+            "mas"
+          ];
           casks = [
             "firefox"
             "sublime-text"
@@ -41,9 +49,9 @@
             "bowtie"
             "vlc"
             "macs-fan-control"
-            "prismlauncher"
             "makemkv"
-
+            "iterm2"
+            "alfred"
           ];
         };
       fonts.packages = [
@@ -68,6 +76,47 @@
           ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
         done
             '';
+
+    system.defaults = {
+      dock.autohide = false;
+      SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
+      dock.minimize-to-application = true;
+      dock.orientation = "left";
+      dock.persistent-apps = [
+        "/System/Applications/Launchpad.app"
+        "/System/Applications/Mission\ Control.app/"
+        "/Applications/Firefox.app"
+        "/System/Applications/Messages.app"
+        "/Applications/iTerm.app"
+        "/Applications/Visual\ Studio\ Code.app"
+        "/System/Applications/System\ Preferences.app"
+
+      ];
+      dock.persistent-others = [
+        "/Applications"
+        "/Users/ethan/Documents"
+        "/Users/ethan/Downloads"
+      ];
+      dock.show-process-indicators = true;
+      dock.show-recents = false;
+      dock.showhidden = true;
+      dock.wvous-bl-corner = 4;
+      finder.AppleShowAllExtensions = true;
+      finder.FXDefaultSearchScope = "SCcf";
+      finder.ShowPathbar = true;
+      menuExtraClock.Show24Hour = true;
+      menuExtraClock.ShowDate = 1;
+      menuExtraClock.ShowDayOfMonth = true;
+      menuExtraClock.ShowDayOfWeek = true;
+      menuExtraClock.ShowSeconds = true;
+      screencapture.disable-shadow = true;
+      trackpad.Clicking = true;
+      NSGlobalDomain.AppleInterfaceStyle = "Dark";
+      NSGlobalDomain.KeyRepeat = 2;
+      finder.FXPreferredViewStyle = "clmv";
+      NSGlobalDomain.AppleICUForce24HourTime = true;
+
+    };
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
       # nix.package = pkgs.nix;
