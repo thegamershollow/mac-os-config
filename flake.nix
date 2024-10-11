@@ -23,9 +23,11 @@
         pkgs.tmux 
         pkgs.git 
         pkgs.gh 
-        pkgs.python3
+        pkgs.python312
         pkgs.mkalias
         pkgs.obsidian
+	pkgs.libimobiledevice
+	pkgs.python312Packages.pip
         ];
 
         homebrew = {
@@ -38,6 +40,7 @@
           };
           brews = [
             "mas"
+	    #"qemu"
           ];
           casks = [
             "firefox"
@@ -45,13 +48,14 @@
             "visual-studio-code"
             "freac"
             "keka"
-            "raspberry-pi-imager"
             "bowtie"
             "vlc"
             "macs-fan-control"
             "makemkv"
             "iterm2"
             "alfred"
+            "freetube"
+	    "discord"
           ];
         };
       fonts.packages = [
@@ -86,9 +90,11 @@
         "/System/Applications/Launchpad.app"
         "/System/Applications/Mission\ Control.app/"
         "/Applications/Firefox.app"
+	"/Applications/Discord.app"
         "/System/Applications/Messages.app"
         "/Applications/iTerm.app"
         "/Applications/Visual\ Studio\ Code.app"
+	"/Applications/Sublime\ Text.app"
         "/System/Applications/System\ Preferences.app"
 
       ];
@@ -100,10 +106,16 @@
       dock.show-process-indicators = true;
       dock.show-recents = false;
       dock.showhidden = true;
-      dock.wvous-bl-corner = 4;
+      dock.mru-spaces = false;
+      dock.wvous-br-corner = 4;
+      dock.wvous-bl-corner = 1;
+      dock.wvous-tl-corner = 1;
+      dock.wvous-tr-corner = 1;
       finder.AppleShowAllExtensions = true;
       finder.FXDefaultSearchScope = "SCcf";
       finder.ShowPathbar = true;
+      finder.ShowStatusBar = true;
+      finder.FXPreferredViewStyle = "icnv";
       menuExtraClock.Show24Hour = true;
       menuExtraClock.ShowDate = 1;
       menuExtraClock.ShowDayOfMonth = true;
@@ -113,9 +125,18 @@
       trackpad.Clicking = true;
       NSGlobalDomain.AppleInterfaceStyle = "Dark";
       NSGlobalDomain.KeyRepeat = 2;
-      finder.FXPreferredViewStyle = "clmv";
       NSGlobalDomain.AppleICUForce24HourTime = true;
-
+      loginwindow.GuestEnabled = false;
+      NSGlobalDomain.AppleMetricUnits = 1;
+      NSGlobalDomain.AppleShowAllExtensions = true;
+      NSGlobalDomain.AppleShowAllFiles = false;
+      NSGlobalDomain.AppleTemperatureUnit = "Celsius";
+      NSGlobalDomain.NSDocumentSaveNewDocumentsToCloud = false;
+      NSGlobalDomain."com.apple.keyboard.fnState" = false;
+      NSGlobalDomain."com.apple.mouse.tapBehavior" = 1;
+      NSGlobalDomain."com.apple.sound.beep.feedback" = 0;
+      loginwindow.DisableConsoleAccess = true;
+      screensaver.askForPassword = true;
     };
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
